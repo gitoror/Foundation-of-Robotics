@@ -29,7 +29,7 @@ if client_id!=-1:
     limits = np.array([[-165, 167], [-100, 55], [-165, 167], [-175, -3], [-165,167], [0, 216], [-165, 167]])
 
     
-    N_SAMPLES = 10000
+    N_SAMPLES = 50000
 
     X = np.zeros((N_SAMPLES, 6))
     Y = np.zeros((N_SAMPLES, N_JOINTS))
@@ -57,8 +57,8 @@ if client_id!=-1:
     
 # print('X: ', X)
 # print('Y: ', Y)
-    np.savetxt('data/X_TWO_JOINTS.csv', X, delimiter=',')
-    np.savetxt('data/Y_TWO_JOINTS.csv', Y, delimiter=',')
+    np.savetxt('data/X_TWO_JOINTS_1.csv', X, delimiter=',')
+    np.savetxt('data/Y_TWO_JOINTS_1.csv', Y, delimiter=',')
 
     # X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
     # np.savetxt('data/X_1_train.txt', X_train)

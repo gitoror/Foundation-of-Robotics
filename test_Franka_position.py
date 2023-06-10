@@ -3,6 +3,8 @@ import math
 import numpy as np
 from tqdm import tqdm
 from sklearn.model_selection import train_test_split
+from trajectory import generate_polynomial_trajectory, plot_trajectory
+import matplotlib.pyplot as plt
 
 # simulation config
 ip = '127.0.0.1'
@@ -33,13 +35,21 @@ if client_id!=-1:
     # vrep.simxSetJointPosition(client_id, joints_handlers[0], math.pi * limits[0][0] / 180, vrep.simx_opmode_oneshot_wait)
     # vrep.simxSetJointPosition(client_id, joints_handlers[1], math.pi * -100 / 180, vrep.simx_opmode_oneshot_wait)
     # vrep.simxSetJointPosition(client_id, joints_handlers[2], math.pi * -165 / 180, vrep.simx_opmode_oneshot_wait)
-    vrep.simxSetJointPosition(client_id, joints_handlers[j], math.pi * limits[j][1]  / 180, vrep.simx_opmode_oneshot_wait)
-    vrep.simxSetJointPosition(client_id, joints_handlers[i], math.pi * limits[i][0]  / 180, vrep.simx_opmode_oneshot_wait)
+    start_position = vrep.simxGetObjectPosition(client_id, connection_handler, -1, vrep.simx_opmode_oneshot_wait)[1]
+    
+    vrep.simxSetJointPosition(client_id, joints_handlers[j], math.pi * limits[j][0]  / 180, vrep.simx_opmode_oneshot_wait)
+    vrep.simxSetJointPosition(client_id, joints_handlers[i], math.pi * limits[i][1]  / 180, vrep.simx_opmode_oneshot_wait)
 
     
     
     
     final_position = vrep.simxGetObjectPosition(client_id, connection_handler, -1, vrep.simx_opmode_oneshot_wait)[1]
     final_orientation = vrep.simxGetObjectOrientation(client_id, connection_handler, -1, vrep.simx_opmode_oneshot_wait)[1]
-    
-    print(final_orientation)
+    # print("p1: ", final_position)
+    # print("p2:", start_position)
+
+    trajectory = generate_polynomial_trajectory(start_position,final_position,grade=2,n_points=1000)
+    # plot_trajectory(trajectory)
+    # plt.show()
+
+    # print(final_orientation)
