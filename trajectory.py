@@ -16,10 +16,10 @@ def generate_linear_trajectory(p1, p2, n_points=100):
     y = (x - p1[0]) * (p2[1] - p1[1]) / (p2[0] - p1[0]) + p1[1]
     return np.array(list(zip(x, y)), dtype=np.float32)
 
-def plot_trajectory(trajectory):
+def plot_trajectory(trajectory, label="trajectory"):
     # for point in trajectory:
     #     print(np.format_float_positional(point[0]), np.format_float_positional(point[1]))
-    plt.plot(trajectory[:,0], trajectory[:,1])
+    plt.plot(trajectory[:,0], trajectory[:,1], label=label)
 # Example usage:
 if __name__ == "__main__":
     p1 = (2, 0)
