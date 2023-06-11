@@ -25,8 +25,7 @@ model_inverse_1 = keras.models.load_model("models/model_inverse_1.h5")
 model_inverse_2 = keras.models.load_model("models/model_inverse_2.h5")
 model_inverse_3 = keras.models.load_model("models/model_inverse_3.h5")
 
-# models = [model_inverse_1, model_inverse_2, model_inverse_3]
-models = [model_inverse_1]
+models = [model_inverse_1, model_inverse_2, model_inverse_3]
 
 # Trajectories:
 
@@ -34,8 +33,7 @@ trajectory_1 = generate_linear_trajectory([0.0,1.0] , [0.6, 0.2] , 300)
 trajectory_2 = generate_polynomial_trajectory([-0.3,1.05] , [0.7, 0.25], 8,300)
 trajectory_3 = generate_polynomial_trajectory([-0.5,0.9], [0.2, 0.2], 8, 300)
 
-# trajectories = [trajectory_1, trajectory_2, trajectory_3]
-trajectories = [trajectory_1]
+trajectories = [trajectory_1, trajectory_2, trajectory_3]
 
 if client_id!=-1:
     print ('Connected to remote   API server on %s:%s  (Vrep)' % (ip, port))
